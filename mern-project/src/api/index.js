@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// Create an axios instance with the base URL of your backend API
+// Create an axios instance with the base URL from environment variable
 const API = axios.create({
-  baseURL: "http://localhost:8080/api/", // Make sure this URL is correct
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 // -------------------- AUTH --------------------
@@ -12,7 +12,7 @@ export const UserSignIn = async (data) => await API.post("/user/signin", data);
 // -------------------- PRODUCTS --------------------
 export const getAllProducts = async (filter = "") =>
   await API.get(`/products?${filter}`);
-  
+
 export const getProductDetails = async (id) =>
   await API.get(`/products/${id}`);
 
