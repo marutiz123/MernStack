@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs"; 
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { createError } from "../error.js";
@@ -70,9 +70,8 @@ export const addToCart = async (req, res, next) => {
         const userJWT = req.user;
         const user = await User.findById(userJWT.id);
 
-        // Ensure the product exists
         const productObjectId = new mongoose.Types.ObjectId(productId);
-        const productExists = await Product.findById(productObjectId);
+        const productExists = await product.findById(productObjectId); // ✅ Fixed variable name (was capitalized incorrectly)
         if (!productExists) {
             return next(createError(404, "Product not found"));
         }
