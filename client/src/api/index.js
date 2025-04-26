@@ -2,8 +2,9 @@ import axios from "axios";
 
 // Create an axios instance with the base URL from environment variable
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: "http://localhost:8080/api/", 
 });
+
 
 // -------------------- AUTH --------------------
 export const UserSignUp = async (data) => await API.post("/user/signup", data);
